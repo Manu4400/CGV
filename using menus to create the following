@@ -1,0 +1,56 @@
+#include<GL/glut.h>
+#include<stdio.h>
+void myDisplay()
+{
+glClear(GL_COLOR_BUFFER_BIT);
+}
+void triangle ()
+{
+}
+void square ()
+{
+}
+void main-menu( id)
+{
+Switch(id);
+{
+Case 1: quit;
+Break( );
+Case 2: shape();
+break
+}
+}
+void shape( id)
+{
+Switch(id);
+{
+Case 1: square();
+Break( );
+Case 2: triangle();
+break
+}
+}
+void myinit()
+{
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity()
+gluOrtho2(50.0, 50.0, 50.0, 50.0);
+glMatrixMode(GL_MODELVIEW);
+}
+int main(int argc,char **argv)
+{
+glutInit(&argc,argv);
+glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+glutInitWindowSize(500,500);
+glutCreateWindow("square");
+glutDisplayFunc(myDisplay);
+myinit();
+sub_menu=glutCreateMenu(Shape);
+glutAddMenuEntry(“square”,1);
+glutAddMenuEntry(“Triangle”,2);
+glutCreateMenu(main_menu);
+glutAddMenuEntry(“Quit”,1);
+glutAddSubMenu( “shape”, Sub_menu);
+glutAttachMenu(GLUT_RIGHT_BUTTON);
+glutMainLoop();
+}
