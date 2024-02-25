@@ -1,0 +1,57 @@
+#include <GL/glut.h>
+#include <math.h>
+#include<stdio.h>
+GLfloat theta=30.0;
+GLfloat thetar;
+void display()
+{
+glClear(GL_COLOR_BUFFER_BIT);
+glBegin(GL_QUADS);
+glColor3f(1.0,0.0,0.4);
+thetar=(theta/(3.142/180.0));
+glVertex2f(cos(thetar),sin(thetar));
+glVertex2f(-sin(thetar),cos(thetar));
+glVertex2f(-cos(thetar),-sin(thetar));
+glVertex2f(sin(thetar),-cos(thetar));
+glEnd();
+glFlush();
+}
+void idle()
+{
+theta+=2;
+if(theta >=360)
+theta-+360;
+glutPostRedisplay();
+}
+void myMouse(int button,int state,int x,int y)
+{
+if(button==GLUT_RIGHT_BUTTON && state==GLUT_DOWN)
+glutIdleFunc(idle);
+if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
+glutIdleFunc(NULL);
+}
+void myKey(unsigned char Key , int x, int y)
+{
+if(Key=='q' || Key=='Q')
+exit(0);
+}
+void myInit()
+{
+glMatrixMode(GL_PROJECTION);
+gluOrtho2D(0.0,500.0,0.0,500.0);
+glLoadIdentity();
+glMatrixMode(GL_MODELVIEW);
+}
+void main(int argc,char **argv)
+{
+glutInit(&argc,argv);
+glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+glutInitWindowSize(800,800);
+glutInitWindowPosition(50,50);
+glutCreateWindow("Sqquare");
+myInit();
+glutDisplayFunc(display);
+glutMouseFunc(myMouse);
+glutKeyboardFunc(myKey);
+glutMainLoop();
+}
